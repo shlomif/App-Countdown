@@ -1,9 +1,12 @@
 use 5.008;
 use strict;
 use warnings FATAL => 'all';
-use Module::Build;
 
-my $builder = Module::Build->new(
+use lib './inc';
+
+use Test::Run::Builder;
+
+my $builder = Test::Run::Builder->new(
     module_name         => 'App::Countdown',
     license             => 'MIT',
     dist_author         => q{Shlomi Fish <shlomif@cpan.org>},
