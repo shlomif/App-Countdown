@@ -21,10 +21,11 @@ countdown -- like sleep only displays the amount of time remaining.
 
 =head1 DESCRIPTION
 
-countdown waits for a certain time to pass (like the UNIX sleep command)
-but unlike it displays the amount of time left to sleep. I always found it
-frustrating that I've placed an alarm using C<sleep $secs ; finish-client> and
-could not tell how much time left, so I wrote countdown for that.
+B<countdown> waits for a certain time to pass, in a similar fashion to the the
+UNIX sleep command, but unlike sleep, it displays the amount of time left to
+sleep. I always found it frustrating that I've placed an alarm using
+C<sleep $secs ; finish-client> and could not tell how much time left, so I
+wrote B<countdown> for that.
 
 =head1 AUTHOR
 
