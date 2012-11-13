@@ -29,6 +29,25 @@ my $builder = Test::Run::Builder->new(
     },
     add_to_cleanup     => [ 'App-Countdown-*' ],
     create_makefile_pl => 'traditional',
+    meta_merge =>
+    {
+        resources =>
+        {
+            repository => "http://bitbucket.org/shlomif/perl-app-coundown",
+            homepage => "http://www.shlomifish.org/open-source/projects/countdown/",
+        },
+        keywords =>
+        [
+            'app',
+            'application',
+            'console',
+            'countdown',
+            'modulino',
+            'sleep',
+            'terminal',
+            'timer',
+        ],
+    },
 );
 
 $builder->create_build_script();
