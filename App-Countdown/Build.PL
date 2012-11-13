@@ -29,6 +29,7 @@ my $builder = Test::Run::Builder->new(
     },
     add_to_cleanup     => [ 'App-Countdown-*' ],
     create_makefile_pl => 'traditional',
+    script_files => ['bin/countdown',],
     meta_merge =>
     {
         resources =>

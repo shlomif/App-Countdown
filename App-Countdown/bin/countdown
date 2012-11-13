@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use App::Countdown;
+
+App::Countdown->new({argv => [@ARGV],})->run();
+
+
