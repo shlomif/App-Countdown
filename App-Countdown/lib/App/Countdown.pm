@@ -1,65 +1,131 @@
 package App::Countdown;
 
 use 5.008;
+
 use strict;
 use warnings FATAL => 'all';
 
+use Time::HiRes qw(sleep time);
+use POSIX qw();
+use IO::Handle;
+
+use Carp;
+
 =head1 NAME
 
-App::Countdown - The great new App::Countdown!
+App::Countdown - wait a certain amount of time while displaying the remainging
+time.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.0.1
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.0.1';
 
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use App::Countdown;
 
-    my $foo = App::Countdown->new();
-    ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+    App::Countdown->new({ argv => [@ARGV] })->run();
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 new
+
+A constructor. Accepts the argv named arguments.
+
+=head2 run
+
+Runs the program.
 
 =cut
 
-sub function1 {
+sub new
+{
+    my $class = shift;
+
+    my $self = bless {}, $class;
+
+    $self->_init(@_);
+
+    return $self;
 }
 
-=head2 function2
+sub _delay
+{
+    my $self = shift;
 
-=cut
+    if (@_)
+    {
+        $self->{_delay} = shift;
+    }
 
-sub function2 {
+    return $self->{_delay};
 }
+
+sub _init
+{
+    my ($self, $args) = @_;
+
+    my $argv = [@{$args->{argv}}];
+
+    my $delay = shift(@$argv);
+
+    if (!defined $delay)
+    {
+        Carp::confess ("You should pass a number of seconds.");
+    }
+
+    if ($delay !~ /\A[1-9][0-9]+\z/)
+    {
+        Carp::confess ("Invalid delay. Must be a positive integer.");
+    }
+
+    $self->_delay($delay);
+
+    return;
+}
+
+sub run
+{
+    my ($self) = @_;
+
+    STDOUT->autoflush(1);
+
+    my $delay = $self->_delay;
+
+    my $start = time();
+    my $end = $start + $delay;
+
+    my $last_printed;
+    while ((my $t = time()) < $end)
+    {
+        my $new_to_print = POSIX::floor($end - $t);
+        if (!defined($last_printed) or $new_to_print != $last_printed)
+        {
+            $last_printed = $new_to_print;
+            print "Remaining $new_to_print/$delay", ' ' x 40, "\r";
+        }
+        sleep(0.1);
+    }
+
+    return;
+}
+
+1;
 
 =head1 AUTHOR
 
-Shlomi Fish, C<< <shlomif at cpan.org> >>
+Shlomi Fish, L<http://www.shlomifish.org/>, C<< <shlomif at cpan.org> >> .
 
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-app-countdown at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Countdown>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
-
-
 
 
 =head1 SUPPORT

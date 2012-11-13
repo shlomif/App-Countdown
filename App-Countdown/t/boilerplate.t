@@ -1,10 +1,11 @@
 #!perl -T
+
 use 5.008;
+
 use strict;
 use warnings FATAL => 'all';
-use Test::More;
 
-plan tests => 3;
+use Test::More tests => 3;
 
 sub not_in_file_ok {
     my ($filename, %regex) = @_;
@@ -38,19 +39,20 @@ sub module_boilerplate_ok {
     );
 }
 
-TODO: {
-  local $TODO = "Need to replace the boilerplate text";
+TODO:
+{
+    # local $TODO = "Need to replace the boilerplate text";
 
-  not_in_file_ok(README =>
-    "The README is used..."       => qr/The README is used/,
-    "'version information here'"  => qr/to provide version information/,
-  );
+    not_in_file_ok(README =>
+        "The README is used..."       => qr/The README is used/,
+        "'version information here'"  => qr/to provide version information/,
+    );
 
-  not_in_file_ok(Changes =>
-    "placeholder date/time"       => qr(Date/time)
-  );
+    not_in_file_ok(Changes =>
+        "placeholder date/time"       => qr(Date/time)
+    );
 
-  module_boilerplate_ok('lib/App/Countdown.pm');
+    module_boilerplate_ok('lib/App/Countdown.pm');
 
 
 }
