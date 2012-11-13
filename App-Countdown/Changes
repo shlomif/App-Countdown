@@ -1,5 +1,7 @@
 Revision history for App-Countdown
 
+        URL to the repo changed to fix a typo. Updated Build.PL.
+
 0.0.3   Tue 13 Nov 18:48:59 IST 2012
         Correct the phrasing in the POD of bin/countdown.
             - Thanks to Omer Zak for pointing it out.
