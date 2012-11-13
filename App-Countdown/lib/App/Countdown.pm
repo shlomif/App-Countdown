@@ -18,11 +18,11 @@ time.
 
 =head1 VERSION
 
-Version 0.0.1
+Version 0.0.2
 
 =cut
 
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 
 
 =head1 SYNOPSIS
@@ -79,7 +79,7 @@ sub _init
         Carp::confess ("You should pass a number of seconds.");
     }
 
-    if ($delay !~ /\A[1-9][0-9]+\z/)
+    if ($delay !~ /\A[1-9][0-9]*\z/)
     {
         Carp::confess ("Invalid delay. Must be a positive integer.");
     }
