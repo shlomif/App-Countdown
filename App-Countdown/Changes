@@ -1,6 +1,8 @@
 Revision history for App-Countdown
 
+0.0.3   Tue 13 Nov 18:48:59 IST 2012
         Correct the phrasing in the POD of bin/countdown.
+            - Thanks to Omer Zak for pointing it out.
 
 0.0.2   Tue 13 Nov 18:12:54 IST 2012
         Fix a bug to accept single digit numbers for delays.
