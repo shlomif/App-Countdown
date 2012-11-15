@@ -82,7 +82,7 @@ sub _calc_delay {
     }
     else
     {
-        Carp::confess ("Invalid delay. Must be a positive integer.");
+        die "Invalid delay. Must be a positive and possibly fractional number, possibly followed by m or h";
     }
 }
 
@@ -131,8 +131,6 @@ sub _init
     $self->_delay(
         $self->_calc_delay($delay)
     );
-
-    $self->_delay($delay);
 
     return;
 }
