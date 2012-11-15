@@ -13,7 +13,7 @@ countdown -- like sleep only displays the amount of time remaining.
 
 =head1 USAGE
 
-    coundown [number of seconds]
+    countdown [number of seconds]
 
 =head1 OPTIONS
 
