@@ -70,9 +70,9 @@ sub _delay
 sub _calc_delay {
     my ($self, $delay_spec) = @_;
 
-    if (my ($n, $qualifier) = $delay_spec =~ /\A([1-9][0-9]*)([mh]?)\z/)
+    if (my ($n, $qualifier) = $delay_spec =~ /\A((?:[1-9][0-9]*(?:\.\d*)?)|(?:0\.\d+))([mh]?)\z/)
     {
-        return ($n * ($qualifier eq 'h'
+        return int($n * ($qualifier eq 'h'
                 ? (60 * 60)
                 : $qualifier eq 'm'
                 ? 60
