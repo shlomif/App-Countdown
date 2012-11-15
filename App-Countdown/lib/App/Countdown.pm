@@ -70,12 +70,14 @@ sub _delay
 sub _calc_delay {
     my ($self, $delay_spec) = @_;
 
-    if ($delay_spec !~ /\A[1-9][0-9]*\z/)
+    if (my ($n, $qualifier) = $delay_spec =~ /\A([1-9][0-9]*)([m]?)\z/)
+    {
+        return ($n * ($qualifier eq 'm' ? 60 : 1));
+    }
+    else
     {
         Carp::confess ("Invalid delay. Must be a positive integer.");
     }
-
-    return $delay_spec;
 }
 
 sub _init
