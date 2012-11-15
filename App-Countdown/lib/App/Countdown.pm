@@ -67,6 +67,17 @@ sub _delay
     return $self->{_delay};
 }
 
+sub _calc_delay {
+    my ($self, $delay_spec) = @_;
+
+    if ($delay_spec !~ /\A[1-9][0-9]*\z/)
+    {
+        Carp::confess ("Invalid delay. Must be a positive integer.");
+    }
+
+    return $delay_spec;
+}
+
 sub _init
 {
     my ($self, $args) = @_;
@@ -109,10 +120,9 @@ sub _init
         Carp::confess ("You should pass a number of seconds.");
     }
 
-    if ($delay !~ /\A[1-9][0-9]*\z/)
-    {
-        Carp::confess ("Invalid delay. Must be a positive integer.");
-    }
+    $self->_delay(
+        $self->_calc_delay($delay)
+    );
 
     $self->_delay($delay);
 
