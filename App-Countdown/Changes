@@ -1,5 +1,6 @@
 Revision history for App-Countdown
 
+0.2.0   Thu 15 Nov 16:21:16 IST 2012
         * Add --version, --help, and --man flags.
             - Thanks to Steven Haryanto from
             http://blogs.perl.org/users/shlomi_fish/2012/11/three-command-line-utilities.html#comments
