@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 5;
+use Test::More tests => 6;
 
 use App::Countdown;
 
@@ -24,5 +24,8 @@ use App::Countdown;
 
     # TEST
     is ($obj->_calc_delay('1h'), 60*60, "_calc_delay(1h) == 60*60 (1 hour)");
+
+    # TEST
+    is ($obj->_calc_delay('5h'), 5*60*60, "_calc_delay(5h) == 5*60*60 (5 hours)");
 }
 
