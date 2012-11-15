@@ -17,7 +17,9 @@ countdown -- like sleep only displays the amount of time remaining.
 
 =head1 OPTIONS
 
-    None so far.
+    --man - displays the man page.
+    --help - displays the help.
+    --version - displays the version.
 
 =head1 DESCRIPTION
 

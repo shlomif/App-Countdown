@@ -8,7 +8,8 @@ use warnings FATAL => 'all';
 use Time::HiRes qw(sleep time);
 use POSIX qw();
 use IO::Handle;
-
+use Getopt::Long qw(GetOptionsFromArray);
+use Pod::Usage;
 use Carp;
 
 =head1 NAME
@@ -71,6 +72,35 @@ sub _init
     my ($self, $args) = @_;
 
     my $argv = [@{$args->{argv}}];
+
+    my $help = 0;
+    my $man = 0;
+    my $version = 0;
+    if (! (my $ret = GetOptionsFromArray(
+        $argv,
+        'help|h' => \$help,
+        man => \$man,
+        version => \$version,
+    )))
+    {
+        die "GetOptions failed!";
+    }
+
+    if ($help)
+    {
+        pod2usage(1);
+    }
+
+    if ($man)
+    {
+        pod2usage(-verbose => 2);
+    }
+
+    if ($version)
+    {
+        print "countdown version $VERSION .\n";
+        exit(0);
+    }
 
     my $delay = shift(@$argv);
 
