@@ -70,7 +70,7 @@ sub _delay
 sub _calc_delay {
     my ($self, $delay_spec) = @_;
 
-    if (my ($n, $qualifier) = $delay_spec =~ /\A((?:[1-9][0-9]*(?:\.\d*)?)|(?:0\.\d+))([mh]?)\z/)
+    if (my ($n, $qualifier) = $delay_spec =~ /\A((?:[1-9][0-9]*(?:\.\d*)?)|(?:0\.\d+))([mhs]?)\z/)
     {
         return int($n * ($qualifier eq 'h'
                 ? (60 * 60)
@@ -82,7 +82,7 @@ sub _calc_delay {
     }
     else
     {
-        die "Invalid delay. Must be a positive and possibly fractional number, possibly followed by m or h";
+        die "Invalid delay. Must be a positive and possibly fractional number, possibly followed by s, m, or h";
     }
 }
 

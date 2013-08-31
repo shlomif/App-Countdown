@@ -1,5 +1,9 @@
 Revision history for App-Countdown
 
+0.3.0   Sat 31 Aug 18:01:02 IDT 2013
+        * Implement support for the "s" delay.
+            - it kept tripping me up, so I added it.
+
 0.2.0   Thu 15 Nov 16:21:16 IST 2012
         * Add --version, --help, and --man flags.
             - Thanks to Steven Haryanto from

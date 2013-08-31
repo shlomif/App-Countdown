@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 9;
+use Test::More tests => 10;
 
 use App::Countdown;
 
@@ -36,5 +36,8 @@ use App::Countdown;
 
     # TEST
     is ($obj->_calc_delay('0.5m'), 30, "_calc_delay(0.5m) == 30 (leading zero)");
+
+    # TEST
+    is ($obj->_calc_delay('90s'), 90, "_calc_delay(90s) == 90 (seconds)");
 }
 

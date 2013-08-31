@@ -16,6 +16,7 @@ countdown -- like sleep only displays the amount of time remaining.
     countdown [number of seconds]
     countdown [minutes]m
     countdown [hours]h
+    countdown [seconds]s
 
 =head1 OPTIONS
 
