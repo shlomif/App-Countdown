@@ -20,6 +20,7 @@ my $builder = Test::Run::Builder->new(
     },
     requires => {
         'Carp' => 0,
+        'Getopt::Long' => '2.36',
         'IO::Handle' => 0,
         'perl' => '5.008',
         'POSIX' => 0,

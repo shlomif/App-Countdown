@@ -8,7 +8,7 @@ use warnings FATAL => 'all';
 use Time::HiRes qw(sleep time);
 use POSIX qw();
 use IO::Handle;
-use Getopt::Long qw(GetOptionsFromArray);
+use Getopt::Long qw(2.36 GetOptionsFromArray);
 use Pod::Usage;
 use Carp;
 
@@ -19,11 +19,11 @@ time.
 
 =head1 VERSION
 
-Version 0.3.0
+Version 0.3.1
 
 =cut
 
-our $VERSION = '0.3.0';
+our $VERSION = '0.3.1';
 
 
 =head1 SYNOPSIS
