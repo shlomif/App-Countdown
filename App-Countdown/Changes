@@ -1,6 +1,6 @@
 Revision history for App-Countdown
 
-0.4.0   Thu 16 Jan 15:37:19 IST 2014
+0.4.0   Thu 16 Jan 15:49:43 IST 2014
         * Implement the new syntax of "1m30s" or "1h30m50s" for delays.
         * Add examples to the bin/countdown man-page POD.
         * Add t/style-trailing-space.t .
