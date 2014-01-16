@@ -80,6 +80,10 @@ sub _calc_delay {
             )
         );
     }
+    elsif (my ($min, $sec) = $delay_spec =~ /\A([1-9][0-9]*)m([1-5][0-9]|0{1,2})s\z/)
+    {
+        return $min * 60 + $sec;
+    }
     else
     {
         die "Invalid delay. Must be a positive and possibly fractional number, possibly followed by s, m, or h";
