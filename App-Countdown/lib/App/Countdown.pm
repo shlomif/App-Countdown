@@ -67,6 +67,8 @@ sub _delay
     return $self->{_delay};
 }
 
+my $up_to_60_re = qr/[1-9]|[1-5][0-9]|0[0-9]?/;
+
 sub _calc_delay {
     my ($self, $delay_spec) = @_;
 
@@ -80,10 +82,18 @@ sub _calc_delay {
             )
         );
     }
-    elsif (my ($min, $sec) = $delay_spec =~ /\A([1-9][0-9]*)m([1-9]|[1-5][0-9]|0[0-9]?)s\z/)
+    elsif (my ($min, $sec) = $delay_spec =~ /\A([1-9][0-9]*)m($up_to_60_re)s\z/)
     {
         $sec =~ s/\A0*//;
         return $min * 60 + (length($sec) ? $sec : 0);
+    }
+    elsif (((my $hour), $min, $sec) =
+        $delay_spec =~ /\A([1-9][0-9]*)h(?:($up_to_60_re)m)?(?:($up_to_60_re)s)?\z/
+    )
+    {
+        $sec =~ s/\A0*//;
+        $min =~ s/\A0*//;
+        return (($hour * 60 + $min) * 60 + $sec);
     }
     else
     {
