@@ -6,6 +6,7 @@ lib/App/Countdown.pm
 MANIFEST			This list of files
 README
 t/00-load.t
+t/cpan-changes.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
