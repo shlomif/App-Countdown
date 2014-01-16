@@ -80,7 +80,7 @@ sub _calc_delay {
             )
         );
     }
-    elsif (my ($min, $sec) = $delay_spec =~ /\A([1-9][0-9]*)m([1-5][0-9]|0{1,2})s\z/)
+    elsif (my ($min, $sec) = $delay_spec =~ /\A([1-9][0-9]*)m([1-9]|[1-5][0-9]|0{1,2})s\z/)
     {
         return $min * 60 + $sec;
     }
