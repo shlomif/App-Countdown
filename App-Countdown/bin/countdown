@@ -17,6 +17,8 @@ countdown -- like sleep only displays the amount of time remaining.
     countdown [minutes]m
     countdown [hours]h
     countdown [seconds]s
+    countdown [minutes]m[seconds]s
+    countdown [hours]h[minutes]m[seconds]s
 
 =head1 OPTIONS
 
@@ -31,6 +33,20 @@ UNIX sleep command, but unlike sleep, it displays the amount of time left to
 sleep. I always found it frustrating that I've placed an alarm using
 C<sleep $secs ; finish-client> and could not tell how much time left, so I
 wrote B<countdown> for that.
+
+=head1 EXAMPLES
+
+    $ countdown 30s # 30 seconds
+
+    $ countdown 1m  # 1 minute
+
+    $ countdown 100 # 100 seconds
+
+    $ countdown 2h  # 2 hours
+
+    $ countdown 2m30s # 2 minutes and 30 seconds.
+
+    $ countdown 1h0m30s # 1 hour, 0 minutes and 30 seconds.
 
 =head1 AUTHOR
 

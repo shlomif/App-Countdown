@@ -1,5 +1,7 @@
 Revision history for App-Countdown
 
+        * Add examples to the bin/countdown man-page POD.
+
 0.3.1   Tue  3 Sep 19:28:13 IDT 2013
         * Add a minimal dependency on Getopt::Long 2.36 for
         GetOptionsFromArray().
