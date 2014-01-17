@@ -14,8 +14,7 @@ use Carp;
 
 =head1 NAME
 
-App::Countdown - wait a certain amount of time while displaying the remainging
-time.
+App::Countdown - wait some specified time while displaying the remaining time.
 
 =head1 VERSION
 
