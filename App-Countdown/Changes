@@ -4,6 +4,7 @@ Revision history for App-Countdown
         - Fix a typo in the NAME and made it all on one line:
             - https://rt.cpan.org/Public/Bug/Display.html?id=92213
             - Thanks to Neil_Bowers
+        - Made the minimum version of perl 5.10 in the Build.PL too.
 
 0.4.1   2014-01-16
         - Add t/cpan-changes.t and adapted Changes to the CPAN::Changes
