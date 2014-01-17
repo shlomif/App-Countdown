@@ -35,7 +35,7 @@ my $builder = Test::Run::Builder->new(
     {
         resources =>
         {
-            repository => "http://bitbucket.org/shlomif/perl-App-Countdown",
+            repository => "https://bitbucket.org/shlomif/perl-app-countdown",
             homepage => "http://www.shlomifish.org/open-source/projects/countdown/",
         },
         keywords =>
