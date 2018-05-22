@@ -1,5 +1,8 @@
 Revision history for App-Countdown
 
+0.4.5   2018-05-22
+        - Convert to dzil .
+
 0.4.4   2017-05-28
         - Convert the repository to git+GitHub.
             - See https://github.com/shlomif/App-Countdown .
