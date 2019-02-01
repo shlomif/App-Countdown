@@ -191,7 +191,7 @@ sub run
             $last_printed = $new_to_print;
             my $hms = _format($new_to_print);
             print "Remaining $hms / $hms_tot ( $new_to_print/$delay )",
-                ' ' x 40, "\r";
+                ' ' x 10, "\r";
         }
         sleep(0.1);
     }
