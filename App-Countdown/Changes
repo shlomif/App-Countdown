@@ -1,5 +1,9 @@
 Revision history for App-Countdown
 
+0.6.0   2019-02-01
+        - Also display the remaining delay in h:mm:ss notation.
+        - Apply perltidy style.
+
 0.4.5   2018-05-22
         - Convert to dzil .
 
