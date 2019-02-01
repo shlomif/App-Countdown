@@ -156,6 +156,12 @@ sub _init
     return;
 }
 
+sub _format
+{
+    my $delay = shift;
+    return sprintf("%d:%02d:%02d", POSIX::floor($delay / 3600), POSIX::floor($delay / 60) % 60, $delay % 60);
+}
+
 sub run
 {
     my ($self) = @_;
@@ -167,6 +173,7 @@ sub run
     my $start = time();
     my $end = $start + $delay;
 
+    my $hms_tot = _format($delay);
     my $last_printed;
     while ((my $t = time()) < $end)
     {
@@ -174,7 +181,8 @@ sub run
         if (!defined($last_printed) or $new_to_print != $last_printed)
         {
             $last_printed = $new_to_print;
-            print "Remaining $new_to_print/$delay", ' ' x 40, "\r";
+            my $hms = _format($new_to_print);
+            print "Remaining $hms / $hms_tot ( $new_to_print/$delay )", ' ' x 40, "\r";
         }
         sleep(0.1);
     }
