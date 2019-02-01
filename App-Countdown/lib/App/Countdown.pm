@@ -24,7 +24,6 @@ Version 0.4.5
 
 our $VERSION = '0.4.5';
 
-
 =head1 SYNOPSIS
 
     use App::Countdown;
@@ -72,56 +71,64 @@ sub _get_up_to_60_val
 {
     my ($v) = @_;
 
-    ($v //= '') =~ s/\A0*//;
+    ( $v //= '' ) =~ s/\A0*//;
 
-    return (length($v) ? $v : 0);
+    return ( length($v) ? $v : 0 );
 }
 
 sub _calc_delay
 {
-    my ($self, $delay_spec) = @_;
+    my ( $self, $delay_spec ) = @_;
 
-    if (my ($n, $qualifier) = $delay_spec =~ /\A((?:[1-9][0-9]*(?:\.\d*)?)|(?:0\.\d+))([mhs]?)\z/)
+    if ( my ( $n, $qualifier ) =
+        $delay_spec =~ /\A((?:[1-9][0-9]*(?:\.\d*)?)|(?:0\.\d+))([mhs]?)\z/ )
     {
-        return int($n * ($qualifier eq 'h'
-                ? (60 * 60)
-                : $qualifier eq 'm'
-                ? 60
-                : 1
+        return int(
+            $n * (
+                  $qualifier eq 'h' ? ( 60 * 60 )
+                : $qualifier eq 'm' ? 60
+                :                     1
             )
         );
     }
-    elsif (my ($min, $sec) = $delay_spec =~ /\A([1-9][0-9]*)m($up_to_60_re)s\z/)
+    elsif ( my ( $min, $sec ) =
+        $delay_spec =~ /\A([1-9][0-9]*)m($up_to_60_re)s\z/ )
     {
         return $min * 60 + _get_up_to_60_val($sec);
     }
-    elsif (((my $hour), $min, $sec) =
-        $delay_spec =~ /\A([1-9][0-9]*)h(?:($up_to_60_re)m)?(?:($up_to_60_re)s)?\z/
-    )
+    elsif ( ( ( my $hour ), $min, $sec ) =
+        $delay_spec =~
+        /\A([1-9][0-9]*)h(?:($up_to_60_re)m)?(?:($up_to_60_re)s)?\z/ )
     {
-        return (($hour * 60 + _get_up_to_60_val($min)) * 60 + _get_up_to_60_val($sec));
+        return ( ( $hour * 60 + _get_up_to_60_val($min) ) * 60 +
+                _get_up_to_60_val($sec) );
     }
     else
     {
-        die "Invalid delay. Must be a positive and possibly fractional number, possibly followed by s, m, or h";
+        die
+"Invalid delay. Must be a positive and possibly fractional number, possibly followed by s, m, or h";
     }
 }
 
 sub _init
 {
-    my ($self, $args) = @_;
+    my ( $self, $args ) = @_;
 
-    my $argv = [@{$args->{argv}}];
+    my $argv = [ @{ $args->{argv} } ];
 
-    my $help = 0;
-    my $man = 0;
+    my $help    = 0;
+    my $man     = 0;
     my $version = 0;
-    if (! (my $ret = GetOptionsFromArray(
-        $argv,
-        'help|h' => \$help,
-        man => \$man,
-        version => \$version,
-    )))
+    if (
+        !(
+            my $ret = GetOptionsFromArray(
+                $argv,
+                'help|h' => \$help,
+                man      => \$man,
+                version  => \$version,
+            )
+        )
+        )
     {
         die "GetOptions failed!";
     }
@@ -133,7 +140,7 @@ sub _init
 
     if ($man)
     {
-        pod2usage(-verbose => 2);
+        pod2usage( -verbose => 2 );
     }
 
     if ($version)
@@ -144,14 +151,12 @@ sub _init
 
     my $delay = shift(@$argv);
 
-    if (!defined $delay)
+    if ( !defined $delay )
     {
-        Carp::confess ("You should pass a number of seconds.");
+        Carp::confess("You should pass a number of seconds.");
     }
 
-    $self->_delay(
-        $self->_calc_delay($delay)
-    );
+    $self->_delay( $self->_calc_delay($delay) );
 
     return;
 }
@@ -159,7 +164,10 @@ sub _init
 sub _format
 {
     my $delay = shift;
-    return sprintf("%d:%02d:%02d", POSIX::floor($delay / 3600), POSIX::floor($delay / 60) % 60, $delay % 60);
+    return sprintf( "%d:%02d:%02d",
+        POSIX::floor( $delay / 3600 ),
+        POSIX::floor( $delay / 60 ) % 60,
+        $delay % 60 );
 }
 
 sub run
@@ -171,18 +179,19 @@ sub run
     my $delay = $self->_delay;
 
     my $start = time();
-    my $end = $start + $delay;
+    my $end   = $start + $delay;
 
     my $hms_tot = _format($delay);
     my $last_printed;
-    while ((my $t = time()) < $end)
+    while ( ( my $t = time() ) < $end )
     {
-        my $new_to_print = POSIX::floor($end - $t);
-        if (!defined($last_printed) or $new_to_print != $last_printed)
+        my $new_to_print = POSIX::floor( $end - $t );
+        if ( !defined($last_printed) or $new_to_print != $last_printed )
         {
             $last_printed = $new_to_print;
             my $hms = _format($new_to_print);
-            print "Remaining $hms / $hms_tot ( $new_to_print/$delay )", ' ' x 40, "\r";
+            print "Remaining $hms / $hms_tot ( $new_to_print/$delay )",
+                ' ' x 40, "\r";
         }
         sleep(0.1);
     }
@@ -272,4 +281,4 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 =cut
 
-1; # End of App::Countdown
+1;    # End of App::Countdown
