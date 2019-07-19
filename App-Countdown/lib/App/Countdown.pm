@@ -5,6 +5,7 @@ use 5.010;
 use strict;
 use warnings FATAL => 'all';
 
+use DateTime::Format::Natural ();
 use Time::HiRes qw(sleep time);
 use POSIX qw();
 use IO::Handle;
@@ -65,6 +66,18 @@ sub _delay
     return $self->{_delay};
 }
 
+sub _end
+{
+    my $self = shift;
+
+    if (@_)
+    {
+        $self->{_end} = shift;
+    }
+
+    return $self->{_end};
+}
+
 my $up_to_60_re = qr/[1-9]|[1-5][0-9]|0[0-9]?/;
 
 sub _get_up_to_60_val
@@ -119,6 +132,7 @@ sub _init
     my $help    = 0;
     my $man     = 0;
     my $version = 0;
+    my $end_str;
     if (
         !(
             my $ret = GetOptionsFromArray(
@@ -126,6 +140,7 @@ sub _init
                 'help|h' => \$help,
                 man      => \$man,
                 version  => \$version,
+                'to=s'   => \$end_str,
             )
         )
         )
@@ -149,15 +164,27 @@ sub _init
         exit(0);
     }
 
-    my $delay = shift(@$argv);
-
-    if ( !defined $delay )
+    if ( defined $end_str )
     {
-        Carp::confess("You should pass a number of seconds.");
+        my $parser = DateTime::Format::Natural->new;
+        my $dt     = $parser->parse_datetime($end_str);
+        if ( not $parser->success )
+        {
+            die $parser->error;
+        }
+        $self->_end( $dt->epoch );
     }
+    else
+    {
+        my $delay = shift(@$argv);
 
-    $self->_delay( $self->_calc_delay($delay) );
+        if ( !defined $delay )
+        {
+            Carp::confess("You should pass a number of seconds.");
+        }
 
+        $self->_delay( $self->_calc_delay($delay) );
+    }
     return;
 }
 
@@ -170,16 +197,23 @@ sub _format
         $delay % 60 );
 }
 
+sub _calc_end
+{
+    my ( $self, $start ) = @_;
+
+    return defined( $self->_end ) ? $self->_end : ( $start + $self->_delay );
+}
+
 sub run
 {
     my ($self) = @_;
 
     STDOUT->autoflush(1);
 
-    my $delay = $self->_delay;
-
     my $start = time();
-    my $end   = $start + $delay;
+    my $end   = $self->_calc_end($start);
+
+    my $delay = $end - $start;
 
     my $hms_tot = _format($delay);
     my $last_printed;

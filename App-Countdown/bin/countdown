@@ -19,6 +19,7 @@ countdown -- like sleep only displays the amount of time remaining.
     countdown [seconds]s
     countdown [minutes]m[seconds]s
     countdown [hours]h[minutes]m[seconds]s
+    countdown --to "20:30"
 
 =head1 OPTIONS
 

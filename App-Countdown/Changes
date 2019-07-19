@@ -1,5 +1,8 @@
 Revision history for App-Countdown
 
+0.8.0   2019-07-19
+        - Add the --to flag.
+
 0.6.0   2019-02-01
         - Also display the remaining delay in h:mm:ss notation.
         - Apply perltidy style.
