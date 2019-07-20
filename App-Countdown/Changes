@@ -1,5 +1,9 @@
 Revision history for App-Countdown
 
+0.8.1   2019-07-20
+        - Prefer future dates and use the local time zone.
+        - weaver.ini
+
 0.8.0   2019-07-19
         - Add the --to flag.
 

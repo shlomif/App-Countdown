@@ -17,14 +17,6 @@ use Carp;
 
 App::Countdown - wait some specified time while displaying the remaining time.
 
-=head1 VERSION
-
-Version 0.4.5
-
-=cut
-
-our $VERSION = '0.4.5';
-
 =head1 SYNOPSIS
 
     use App::Countdown;
@@ -160,14 +152,17 @@ sub _init
 
     if ($version)
     {
-        print "countdown version $VERSION .\n";
+        print "countdown version $App::Countdown::VERSION .\n";
         exit(0);
     }
 
     if ( defined $end_str )
     {
-        my $parser = DateTime::Format::Natural->new;
-        my $dt     = $parser->parse_datetime($end_str);
+        my $parser = DateTime::Format::Natural->new(
+            prefer_future => 1,
+            time_zone     => 'local',
+        );
+        my $dt = $parser->parse_datetime($end_str);
         if ( not $parser->success )
         {
             die $parser->error;
