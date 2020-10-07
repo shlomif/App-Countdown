@@ -1,12 +1,17 @@
 Revision history for App-Countdown
 
+0.8.3       2020-10-07
+
+    - Add documentation to the App::Countdown module about command-line use.
+        - Thanks to lopid
+    - Remove old POD sections.
+
 0.8.2       2020-01-28
     - Rebuild for order of 'NAME' and 'VERSION' sections in the generated
     POD documentation (see:
     https://metacpan.org/changes/distribution/Pod-Weaver-PluginBundle-SHLOMIF#L3
     ).
         - VERSION used to appear before NAME.
-
 
 0.8.1   2019-07-20
         - Prefer future dates and use the local time zone.

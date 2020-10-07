@@ -55,46 +55,17 @@ Shlomi Fish, L<http://www.shlomifish.org/> .
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-module-format at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Module-Format>.  I will be notified, and then you'll
+Please report any bugs or feature requests to C<app-countdown at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Countdown>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Module::Format::Module
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Module-Format>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Module-Format>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Module-Format>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Module-Format/>
-
-=back
-
 =head1 ACKNOWLEDGEMENTS
-
 
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2012 Shlomi Fish.
 
-This program is distributed under the MIT (X11) License:
+This program is distributed under the MIT (Expat) License:
 L<http://www.opensource.org/licenses/mit-license.php>
 
 Permission is hereby granted, free of charge, to any person

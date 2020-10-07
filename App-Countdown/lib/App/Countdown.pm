@@ -19,7 +19,7 @@ App::Countdown - wait some specified time while displaying the remaining time.
 
 =head1 SYNOPSIS
 
-    use App::Countdown;
+    use App::Countdown ();
 
     App::Countdown->new({ argv => [@ARGV] })->run();
 
@@ -230,44 +230,47 @@ sub run
 
 1;
 
+=head1 USAGE
+
+    countdown [number of seconds]
+    countdown [minutes]m
+    countdown [hours]h
+    countdown [seconds]s
+    countdown [minutes]m[seconds]s
+    countdown [hours]h[minutes]m[seconds]s
+    countdown --to "20:30"
+
+=head1 OPTIONS
+
+    --man - displays the man page.
+    --help - displays the help.
+    --version - displays the version.
+
+=head1 DESCRIPTION
+
+B<countdown> waits for a certain time to pass, in a similar fashion to the
+UNIX sleep command, but unlike sleep, it displays the amount of time left to
+sleep. I always found it frustrating that I've placed an alarm using
+C<sleep $secs ; finish-client> and could not tell how much time left, so I
+wrote B<countdown> for that.
+
+=head1 EXAMPLES
+
+    $ countdown 30s # 30 seconds
+
+    $ countdown 1m  # 1 minute
+
+    $ countdown 100 # 100 seconds
+
+    $ countdown 2h  # 2 hours
+
+    $ countdown 2m30s # 2 minutes and 30 seconds.
+
+    $ countdown 1h0m30s # 1 hour, 0 minutes and 30 seconds.
+
 =head1 AUTHOR
 
 Shlomi Fish, L<http://www.shlomifish.org/>, C<< <shlomif at cpan.org> >> .
-
-=head1 BUGS
-
-Please report any bugs or feature requests to
-L<https://github.com/shlomif/App-Countdown/issues> .
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc App::Countdown
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker (report bugs here)
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Countdown>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/App-Countdown>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/App-Countdown>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/App-Countdown/>
-
-=back
-
 
 =head1 ACKNOWLEDGEMENTS
 
@@ -278,35 +281,6 @@ L<http://search.cpan.org/dist/App-Countdown/>
 Reporting a typo and a problem with the description not fitting on one line.
 
 =back
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2012 Shlomi Fish.
-
-This program is distributed under the MIT (X11) License:
-L<http://www.opensource.org/licenses/mit-license.php>
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
 
 =cut
 
