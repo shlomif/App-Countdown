@@ -6,12 +6,12 @@ use strict;
 use warnings FATAL => 'all';
 
 use DateTime::Format::Natural ();
-use Time::HiRes qw(sleep time);
-use POSIX qw();
+use Time::HiRes               qw(sleep time);
+use POSIX                     qw();
 use IO::Handle;
 use Getopt::Long qw(2.36 GetOptionsFromArray);
 use Pod::Usage;
-use Carp;
+use Carp ();
 
 =head1 NAME
 
